@@ -23,8 +23,19 @@ class Program
 
             if (choice == "1")
             {
-                string prompt = promptGenerator.GetRandomPrompt();
-                Console.WriteLine(prompt);
+                Console.Write("Would you like a prompt? (yes/no): ");
+                string usePrompt = Console.ReadLine().ToLower();
+    
+                 string prompt = "";
+                if (usePrompt == "yes" || usePrompt == "y")
+                {
+                    prompt = promptGenerator.GetRandomPrompt();
+                    Console.WriteLine(prompt);
+                }
+                else
+                {
+                    Console.WriteLine("Free to create your entry");
+                }
                 Console.Write("> ");
                 string response = Console.ReadLine();
 
