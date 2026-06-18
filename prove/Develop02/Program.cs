@@ -34,6 +34,7 @@ class Program
                 }
                 else
                 {
+                    prompt = "N/A";
                     Console.WriteLine("Free to create your entry");
                 }
                 Console.Write("> ");
