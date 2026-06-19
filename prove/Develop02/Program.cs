@@ -23,6 +23,7 @@ class Program
 
             if (choice == "1")
             {
+                //ask the user if they want a prompt
                 Console.Write("Would you like a prompt? (yes/no): ");
                 string usePrompt = Console.ReadLine().ToLower();
     
