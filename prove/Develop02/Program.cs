@@ -42,9 +42,9 @@ class Program
                 string response = Console.ReadLine();
 
                 Entry newEntry = new Entry();
-                newEntry.date = DateTime.Now.ToShortDateString();
-                newEntry.promptText = prompt;
-                newEntry.entryText = response;
+                newEntry._date = DateTime.Now.ToShortDateString();
+                newEntry._promptText = prompt;
+                newEntry._entryText = response;
 
                 theJournal.AddEntry(newEntry);
             }

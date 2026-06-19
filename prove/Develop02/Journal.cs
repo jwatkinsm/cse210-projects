@@ -4,20 +4,20 @@ using System.IO;
 
 public class Journal
 {
-    public List<Entry> entries = new List<Entry>();
+    public List<Entry> _entries = new List<Entry>();
 
     public void AddEntry(Entry newEntry)
     {
-        entries.Add(newEntry);
+        _entries.Add(newEntry);
     }
     public void DisplayAll()
     {
-        if (entries.Count == 0)
+        if (_entries.Count == 0)
         {
             Console.WriteLine("The journal is currently empty.");
             return;
         }
-        foreach (Entry entry in entries)
+        foreach (Entry entry in _entries)
         {
             entry.Display();
         }
@@ -26,9 +26,9 @@ public class Journal
     {
         using (StreamWriter outputFile = new StreamWriter(file))
         {
-            foreach (Entry entry in entries)
+            foreach (Entry entry in _entries)
             {
-                outputFile.WriteLine($"{entry.date}|{entry.promptText}|{entry.entryText}");
+                outputFile.WriteLine($"{entry._date}|{entry._promptText}|{entry._entryText}");
 
             }
 
@@ -43,7 +43,7 @@ public class Journal
             Console.WriteLine("File not found.");
             return;
         }
-        entries.Clear();
+        _entries.Clear();
         string[] lines = File.ReadAllLines(file);
         foreach (string line in lines)
         {
@@ -51,10 +51,10 @@ public class Journal
             if (parts.Length == 3)
             {
                 Entry newEntry = new Entry();
-                newEntry.date = parts[0];
-                newEntry.promptText = parts[1];
-                newEntry.entryText = parts[2];
-                entries.Add(newEntry);
+                newEntry._date = parts[0];
+                newEntry._promptText = parts[1];
+                newEntry._entryText = parts[2];
+                _entries.Add(newEntry);
             }
         }
         Console.WriteLine("Journal Loaded succesfully! ");
