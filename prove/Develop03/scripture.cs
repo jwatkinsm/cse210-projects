@@ -2,6 +2,7 @@ public class Scripture
 {
     private Reference _reference;
     private List<Word> _words;
+    private Random _random = new Random();
 
     public Scripture(Reference reference, string text)
     {
@@ -19,11 +20,12 @@ public class Scripture
 
     public void HideRandomWords(int numberToHide)
     {
-        Random random = new Random();
+        List<Word> visibleWords = _words.Where(w => !w.IsHidden()).ToList();
+        int wordsToHideCount = Math.Min(numberToHide, visibleWords.Count);
         
         for (int i = 0; i < wordsToHideCount; i++)
         {
-            int randomIndex = random.Next(0, visibleWords.Count);
+            int randomIndex = _random.Next(0, visibleWords.Count);
             visibleWords[randomIndex].Hide();
             visibleWords.RemoveAt(randomIndex); 
         }
