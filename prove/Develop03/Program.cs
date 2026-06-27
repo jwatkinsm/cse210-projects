@@ -5,10 +5,24 @@ class Program
     static void Main(string[] args)
       {
         // 1. Initialize the scripture and reference
-        Reference reference = new Reference("Proverbs", 3, 5, 6);
-        string text = "Trust in the LORD with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.";
+        //Reference reference = new Reference("Proverbs", 3, 5, 6);
+        //string text = "Trust in the LORD with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.";
         
-        Scripture scripture = new Scripture(reference, text);
+        //Scripture scripture = new Scripture(reference, text);
+        ScriptureLibrary library = new ScriptureLibrary();
+        string filename = "scriptures.txt";
+
+        // Load scriptures from the external file
+        library.LoadScripturesFromFile(filename);
+
+        // Select a random scripture to present to the user
+        Scripture scripture = library.GetRandomScripture();
+
+        if (scripture == null)
+        {
+            Console.WriteLine("Error: The scripture library is empty or the file was not found.");
+            return;
+        }
 
         // 2. Main loop
         while (!scripture.IsCompletelyHidden())
