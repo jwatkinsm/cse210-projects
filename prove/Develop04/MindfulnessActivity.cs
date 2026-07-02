@@ -1,6 +1,6 @@
 using System; 
 
-public class MindfulnessActivity
+public abstract class MindfulnessActivity
 {
     protected string _name;
     protected string _description;
@@ -64,4 +64,5 @@ public class MindfulnessActivity
             RunActivity();
             EndMessage();
         }
+        protected abstract void RunActivity();
 }

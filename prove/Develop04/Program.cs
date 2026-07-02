@@ -22,12 +22,12 @@ class Program
                 case "1":
                     activity = new BreathingActivity();
                     break;
-                case "2":
-                    activity = new ReflectionActivity();
-                    break;
-                case "3":
-                    activity = new ListingActivity();
-                    break;
+                //case "2":
+                //    activity = new ReflectionActivity();
+                //    break;
+                //case "3":
+                //    activity = new ListingActivity();
+                //    break;
                 case "4":
                     Console.WriteLine("Goodbye. Take care of yourself!");
                     return;
