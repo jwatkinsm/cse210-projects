@@ -1,0 +1,2 @@
+100
+SimpleGoal|test|testing simple goal|100|True
