@@ -1,2 +1,3 @@
-100
-SimpleGoal|test|testing simple goal|100|True
+1100
+SimpleGoal|asdaagd|test simple goal|100|True
+EternalGoal|test|test eternal|1000
