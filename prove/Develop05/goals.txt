@@ -1,3 +1,4 @@
-1100
+1200
 SimpleGoal|asdaagd|test simple goal|100|True
 EternalGoal|test|test eternal|1000
+ChecklistGoal|testing pass|test checklist|50|500|100000000|2

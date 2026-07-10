@@ -64,12 +64,12 @@ public class QuestManager
             {
                 _goals.Add(new EternalGoal(name, desc, points));
             }
-           // else if (type == "3")
-            //{
-            //    int target = PromptForInt("How many times does this goal need to be accomplished for a bonus? ");
-            //    int bonus = PromptForInt("What is the bonus amount for accomplishing it that many times? ");
-             //   _goals.Add(new ChecklistGoal(name, desc, points, target, bonus));
-            // }
+            else if (type == "3")
+            {
+                int target = PromptForInt("How many times does this goal need to be accomplished for a bonus? ");
+                int bonus = PromptForInt("What is the bonus amount for accomplishing it that many times? ");
+                _goals.Add(new ChecklistGoal(name, desc, points, target, bonus));
+            }
             Console.WriteLine("Goal added successfully!");
         }
 
@@ -177,10 +177,10 @@ public class QuestManager
                         {
                             _goals.Add(new EternalGoal(parts[1], parts[2], int.Parse(parts[3])));
                         }
-                        //else if (type == "ChecklistGoal")
-                        //{
-                        //    _goals.Add(new ChecklistGoal(parts[1], parts[2], int.Parse(parts[3]), int.Parse(parts[4]), int.Parse(parts[5]), int.Parse(parts[6])));
-                        //}
+                        else if (type == "ChecklistGoal")
+                        {
+                            _goals.Add(new ChecklistGoal(parts[1], parts[2], int.Parse(parts[3]), int.Parse(parts[4]), int.Parse(parts[5]), int.Parse(parts[6])));
+                        }
                     }
                 }
                 Console.WriteLine("Goals loaded successfully!");
