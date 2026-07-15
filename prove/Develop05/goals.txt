@@ -1,4 +1,5 @@
-1200
+1250
 SimpleGoal|asdaagd|test simple goal|100|True
 EternalGoal|test|test eternal|1000
-ChecklistGoal|testing pass|test checklist|50|500|100000000|2
+ChecklistGoal|testing pass|test checklist|50|500|100000000|3
+EternalGoal|not die|test auto save upon exit|100

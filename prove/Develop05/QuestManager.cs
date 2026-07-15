@@ -28,7 +28,8 @@ public class QuestManager
                     case "3": SaveGoals(); break;
                     case "4": LoadGoals(); break;
                     case "5": RecordEvent(); break;
-                    case "6": running = false; break;
+                    case "6": HandleExit();
+                              running = false; break;
                     default: Console.WriteLine("Invalid selection. Please choose a valid number from the menu."); break;
                 }
             }
@@ -147,6 +148,19 @@ public class QuestManager
             }
         }
 
+          // Handles automatic saving before closing down the application loop
+        private void HandleExit()
+        {
+            Console.Write("\nWould you like to save your goals before exiting? (y/n): ");
+            string response = Console.ReadLine()?.Trim().ToLower();
+
+            if (response == "y" || response == "yes")
+            {
+                SaveGoals();
+            }
+            Console.WriteLine("Goodbye on your Eternal Quest!");
+        }
+
         private void LoadGoals()
         {
             Console.Write("Enter filename to load: ");
@@ -190,7 +204,7 @@ public class QuestManager
                     Console.WriteLine($"Error loading file data: {ex.Message}");
                 }
             }
-                    private int PromptForInt(string promptMessage)
+        private int PromptForInt(string promptMessage)
                     {
                         int result;
                         while (true)
