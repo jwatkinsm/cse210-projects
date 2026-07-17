@@ -18,7 +18,7 @@ public class RefrigeratedVan : Vehicle
         double travelFuel = route._distance * fuelBurn;
 
           double coolingLoad = Math.Max(1, 77.0 - _targetTemperature); 
-        double coolingFuel = (coolingLoad * 0.027) / (_insulationThickness * 0.5);
+        double coolingFuel = coolingLoad * 0.027 / (_insulationThickness * 0.5);
 
         return travelFuel + (route._distance * coolingFuel);
     }
