@@ -5,11 +5,12 @@ class Program
 {
     static void Main(string[] args)
     {
-       Cargo package = new Cargo("BOX-01", 10.5, true);
-       Console.WriteLine($"Package 1: {package.GetTracking}, {package.GetWeight}, {package.GetRefrigeration}");
+      FleetManager centralFleet = new FleetManager();
+        centralFleet.AddVehicle(new CargoTruck("TRK-77", 300.0, 3));
+        centralFleet.AddVehicle(new RefrigeratedVan("COLD-02", 80.0, -4.0, 8.0)); // -4°F deep freeze
+        centralFleet.AddVehicle(new DeliveryDrone("DRN-alpha", 50.0));
 
-       DeliveryRoute route = new DeliveryRoute("Downtown Clinic", 25.0, false);
-    Console.WriteLine($"Route: {route._destination} is {route._distance}km away."); 
+        centralFleet.PrintFleetAudit();
 
     }
 }

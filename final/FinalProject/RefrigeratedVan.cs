@@ -22,4 +22,8 @@ public class RefrigeratedVan : Vehicle
 
         return travelFuel + (route._distance * coolingFuel);
     }
+    public override void DisplayFleetStatus() 
+    { 
+        Console.Write($"[Refrigerated Van | Temp: {_targetTemperature}°F | Insulation: {_insulationThickness}cm] "); base.DisplayFleetStatus(); 
+    }
 }
