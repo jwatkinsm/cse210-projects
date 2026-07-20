@@ -1,0 +1,4 @@
+Truck,TRK-77,300,3,False
+Van,COLD-02,80
+Drone,DRN-alpha,50
+Truck,TRK-OffRoad,400,2,True

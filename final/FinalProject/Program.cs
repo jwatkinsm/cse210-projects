@@ -5,13 +5,19 @@ class Program
 {
     static void Main(string[] args)
     {
-      FleetManager centralFleet = new FleetManager();
-        centralFleet.AddVehicle(new CargoTruck("TRK-77", 300.0, 3, false ));
-        centralFleet.AddVehicle(new RefrigeratedVan("COLD-02", 80.0, -4.0, 8.0)); // -4°F deep freeze
-        centralFleet.AddVehicle(new DeliveryDrone("DRN-alpha", 50.0));
-        centralFleet.AddVehicle(new CargoTruck("TRK-OffRoad", 400.0, 2, true));
+        FleetManager centralFleet = new FleetManager();
 
-         bool runProgram = true;
+        centralFleet.LoadFromFile();
+
+        if (centralFleet.GetAvailableVehicles().Count == 0)
+        {
+            centralFleet.AddVehicle(new CargoTruck("TRK-77", 300.0, 3, false ));
+            centralFleet.AddVehicle(new RefrigeratedVan("COLD-02", 80.0, -4.0, 8.0)); // -4°F deep freeze
+            centralFleet.AddVehicle(new DeliveryDrone("DRN-alpha", 50.0));
+            centralFleet.AddVehicle(new CargoTruck("TRK-OffRoad", 400.0, 2, true));
+        }
+
+        bool runProgram = true;
         while (runProgram)
         {
             Console.WriteLine("\n========================================");
@@ -20,8 +26,9 @@ class Program
             Console.WriteLine("1. View Current Fleet Audit");
             Console.WriteLine("2. Dispatch Custom Shipment Route");
             Console.WriteLine("3. Add New Vehicle to Fleet");
-            Console.WriteLine("4. Exit System Engine");
-            Console.Write("Select an operation option (1-4): ");
+            Console.WriteLine("4. Save System Registry");
+            Console.WriteLine("5. Exit System Engine");
+            Console.Write("Select an operation option (1-5): ");
 
             string selection = Console.ReadLine();
             switch (selection)
@@ -111,15 +118,21 @@ class Program
                     {
                         Console.WriteLine("[ERROR] Invalid vehicle type selection.");
                     }
+                     centralFleet.SaveToFile();
                     break;
 
-                case "4":
+                 case "4":
+                    centralFleet.SaveToFile();
+                    break;
+
+                case "5":
+                    centralFleet.SaveToFile();
                     runProgram = false;
                     Console.WriteLine("\nShutting down Fleet Tracker Engine safely. Goodbye.");
                     break;
 
                 default:
-                    Console.WriteLine("\nInvalid option selection string. Please choose between indices 1-4.");
+                    Console.WriteLine("\nInvalid option selection string. Please choose between indices 1-5.");
                     break;
             }
         }
