@@ -32,8 +32,17 @@ class Program
 
                 case "2":
                     Console.WriteLine("\n--- Step A: Configure Your Cargo Load ---");
-                    Console.Write("Enter unique Tracking ID: ");
+                    Console.Write("Enter unique Tracking ID: (or press Enter to auto-generate): ");
                     string id = Console.ReadLine();
+
+                    // RANDOM GENERATOR LOGIC: If input is blank
+                    if (string.IsNullOrWhiteSpace(id))
+                    {
+                        Random rand = new Random();
+                        int randomNumber = rand.Next(0000000, 9999999);
+                        id = $"SHP-{randomNumber}";
+                        Console.WriteLine($"[INFO] Auto-generated Tracking ID: {id}");
+                    }
                     
                     Console.Write("Enter weight load configuration (kg): ");
                     double.TryParse(Console.ReadLine(), out double weight);
@@ -56,6 +65,7 @@ class Program
                     DeliveryRoute route = new DeliveryRoute(dest, dist, isRough);
 
                     Console.WriteLine("\n--- Step C: Evaluating Optimal Infrastructure ---");
+                    Console.WriteLine($"Destination: {route._destination} ({route._distance}km, Rough Terrain: {route._isRoughTerrain})");
                     DispatchController.OptimizeAndAssign(shipment, route, centralFleet);
                     break;
 

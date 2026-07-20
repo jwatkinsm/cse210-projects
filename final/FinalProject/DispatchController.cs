@@ -2,33 +2,56 @@ public class DispatchController
 {
     public static void OptimizeAndAssign(Cargo shipment, DeliveryRoute route, FleetManager fleet)
     {
-        Vehicle bestMatch = null;
-        double lowestFuel = double.MaxValue;
+         List<Vehicle> eligibleVehicles = new List<Vehicle>();
+        List<double> computedCosts = new List<double>();
 
         foreach (var vehicle in fleet.GetAvailableVehicles())
         {
             if (shipment.GetRefrigeration && !(vehicle is RefrigeratedVan)) continue;
             if (vehicle is DeliveryDrone drone && shipment.GetWeight > drone.MaxWeightLimitKg) continue;
 
-            if (vehicle.CanHandleRoute(route))
+            if (!vehicle.CanHandleRoute(route))
             {
-                double fuelCost = vehicle.CalculateFuelRequired(route);
-                if (fuelCost < lowestFuel)
-                {
-                    lowestFuel = fuelCost;
-                    bestMatch = vehicle;
-                }
+                Console.WriteLine($"  [INCOMPATIBLE] Unit {vehicle.VehicleId} cannot navigate route parameters.");
+                continue;
+            }
+
+             double estimatedFuel = vehicle.CalculateFuelRequired(route);
+
+              if (vehicle.CurrentFuel >= estimatedFuel)
+            {
+                eligibleVehicles.Add(vehicle);
+                computedCosts.Add(estimatedFuel);
             }
         }
 
-        if (bestMatch != null)
+        if (eligibleVehicles.Count == 0)
         {
-            bestMatch.LoadCargo(shipment);
-            Console.WriteLine($"[SUCCESS] {shipment.GetTracking} ({shipment.GetWeight}) assigned to vehicle {bestMatch.VehicleId}");
+            Console.WriteLine("\n[ALERT] No qualified fleet vehicles have sufficient fuel for this delivery route.");
+            return;
+        }
+
+        Console.WriteLine("\nAvailable Options for Assignment:");
+        for (int i = 0; i < eligibleVehicles.Count; i++)
+        {
+            Console.Write($"{i + 1}. ");
+            eligibleVehicles[i].DisplayFleetStatus();
+            Console.WriteLine($"   Estimated Trip Cost: {computedCosts[i]:F2} L/Units");
+        }
+
+        Console.Write($"\nSelect an option index (1-{eligibleVehicles.Count}) or 0 to cancel dispatch: ");
+        if (int.TryParse(Console.ReadLine(), out int choice) && choice > 0 && choice <= eligibleVehicles.Count)
+        {
+            int index = choice - 1;
+            Vehicle selectedVehicle = eligibleVehicles[index];
+            
+
+            selectedVehicle.LoadCargo(shipment);
+            Console.WriteLine($"\n[SUCCESS] Shipment loaded onto Fleet Unit {selectedVehicle.VehicleId}.");
         }
         else
         {
-            Console.WriteLine($"[FAILED] No vehicle qualified for {shipment.GetTracking}");
+            Console.WriteLine("\n[CANCELLED] Dispatch deployment aborted by user request.");
         }
     }
 }
