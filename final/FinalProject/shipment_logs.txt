@@ -1,0 +1,1 @@
+[2026-07-21 17:19:09] ID: SHP-572924 | Weight: 100kg | Dest: home (0.1km) | Assigned Unit: COLD-02 | Est Cost: 0.07

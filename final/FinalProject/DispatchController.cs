@@ -1,5 +1,6 @@
 public class DispatchController
 {
+    private const string LogFilePath = "shipment_logs.txt";
     public static void OptimizeAndAssign(Cargo shipment, DeliveryRoute route, FleetManager fleet)
     {
          List<Vehicle> eligibleVehicles = new List<Vehicle>();
@@ -44,10 +45,29 @@ public class DispatchController
         {
             int index = choice - 1;
             Vehicle selectedVehicle = eligibleVehicles[index];
-            
+            double tripCost = computedCosts[index];
 
             selectedVehicle.LoadCargo(shipment);
             Console.WriteLine($"\n[SUCCESS] Shipment loaded onto Fleet Unit {selectedVehicle.VehicleId}.");
+            
+            try
+            {
+                using (StreamWriter sw = File.AppendText(LogFilePath))
+                {
+                    string logLine = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] " +
+                                     $"ID: {shipment.GetTracking} | " +
+                                     $"Weight: {shipment.GetWeight}kg | " +
+                                     $"Dest: {route._destination} ({route._distance}km) | " +
+                                     $"Assigned Unit: {selectedVehicle.VehicleId} | " +
+                                     $"Est Cost: {tripCost:F2}";
+                    sw.WriteLine(logLine);
+                }
+                Console.WriteLine("[INFO] Historical entry appended to shipment_logs.txt.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[WARNING] Failed to write to log file: {ex.Message}");
+            }
         }
         else
         {

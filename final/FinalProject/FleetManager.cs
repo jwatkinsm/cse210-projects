@@ -65,7 +65,7 @@ public class FleetManager
                     bool.TryParse(data[4], out bool has4Wd);
                     _activeFleet.Add(new CargoTruck(id, fuel, axles, has4Wd));
                 }
-                else if (type == "Van")
+                else if (type == "Van" && data.Length >= 5)
                 {
                     double.TryParse(data[3], out double targetTempF);
                     double.TryParse(data[4], out double insulationCm);
