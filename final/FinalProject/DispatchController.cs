@@ -48,6 +48,7 @@ public class DispatchController
             double tripCost = computedCosts[index];
 
             selectedVehicle.LoadCargo(shipment);
+            selectedVehicle.ConsumeFuel(tripCost);
             Console.WriteLine($"\n[SUCCESS] Shipment loaded onto Fleet Unit {selectedVehicle.VehicleId}.");
             
             try

@@ -18,6 +18,17 @@ public abstract class Vehicle
 
     public void LoadCargo(Cargo item) => loadedCargo.Add(item);
 
+     public void ConsumeFuel(double amount)
+        {
+            currentFuel = Math.Max(0.0, currentFuel - amount);
+        }
+
+        public void Refuel()
+        {
+            currentFuel = maxFuelCapacity;
+            Console.WriteLine($"  [INFO] Vehicle {VehicleId} has been refueled to {maxFuelCapacity}L/Units.");
+        }
+
     public abstract bool CanHandleRoute(DeliveryRoute route);
     public abstract double CalculateFuelRequired(DeliveryRoute route);
 

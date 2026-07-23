@@ -24,11 +24,12 @@ class Program
             Console.WriteLine("    LOGISTICS FLEET TRACKER HARDWARE    ");
             Console.WriteLine("========================================");
             Console.WriteLine("1. View Current Fleet Audit");
-            Console.WriteLine("2. Dispatch Custom Shipment Route");
+            Console.WriteLine("2. Dispatch Custom Shipment Route"); 
             Console.WriteLine("3. Add New Vehicle to Fleet");
             Console.WriteLine("4. Save System Registry");
+            Console.WriteLine("5. Refuel All Vehicles");
             Console.WriteLine("5. Exit System Engine");
-            Console.Write("Select an operation option (1-5): ");
+            Console.Write("Select an operation option (1-6): ");
 
             string selection = Console.ReadLine();
             switch (selection)
@@ -125,14 +126,23 @@ class Program
                     centralFleet.SaveToFile();
                     break;
 
-                case "5":
+                    case "5": // REFUEL IMPLEMENTATION
+                    Console.WriteLine("\n--- Initiating Fleet Refueling Procedures ---");
+                    foreach (var vehicle in centralFleet.GetAvailableVehicles())
+                    {
+                        vehicle.Refuel();
+                    }
+                    centralFleet.SaveToFile();
+                    break;
+
+                case "6":
                     centralFleet.SaveToFile();
                     runProgram = false;
                     Console.WriteLine("\nShutting down Fleet Tracker Engine safely. Goodbye.");
                     break;
 
                 default:
-                    Console.WriteLine("\nInvalid option selection string. Please choose between indices 1-5.");
+                    Console.WriteLine("\nInvalid option selection string. Please choose between 1-6.");
                     break;
             }
         }
