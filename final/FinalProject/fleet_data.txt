@@ -1,4 +1,5 @@
-Truck,TRK-77,229.6,3,False
-Drone,DRN-alpha,50
-Truck,TRK-OffRoad,400,2,True
-Truck,,100,6,False
+Truck,TRK-77,300,3,False,300
+Van,COLD-02,80,80,-4,8
+Drone,DRN-alpha,50,50
+Truck,TRK-OffRoad,400,2,True,400
+Van,CO:D-835,100,100,35,10

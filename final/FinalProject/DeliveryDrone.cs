@@ -2,7 +2,8 @@ public class DeliveryDrone : Vehicle
 {
     public double MaxWeightLimitKg => 15.0;
 
-    public DeliveryDrone(string id, double initialBatteryCapacity) : base(id, initialBatteryCapacity) {}
+     public DeliveryDrone(string id, double maxCapacity, double currentBattery) 
+            : base(id, maxCapacity, currentBattery) {}
 
     public override bool CanHandleRoute(DeliveryRoute route) => route._distance <= 40.0;
 

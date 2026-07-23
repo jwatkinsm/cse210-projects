@@ -2,7 +2,7 @@ public class CargoTruck : Vehicle
 {
     private bool _fourWheelDrive;
     public int _numberOfAxles{get;}
-    public CargoTruck(string id, double fuelCapacity, int axles, bool _4wd) : base(id, fuelCapacity) 
+    public CargoTruck(string id, double maxCapacity, double currentFuel, int axles, bool _4wd) :  base(id, maxCapacity, currentFuel) 
     {
         _numberOfAxles = axles;
         _fourWheelDrive = _4wd;

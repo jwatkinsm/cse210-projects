@@ -7,12 +7,14 @@ public abstract class Vehicle
 
     public string VehicleId => vehicleId;
     public double CurrentFuel => currentFuel;
+    public double MaxFuelCapacity => maxFuelCapacity;
+    
     public List<Cargo> LoadedCargo => loadedCargo;
 
-    protected Vehicle(string id, double fuelCapacity)
+    protected Vehicle(string id,double maxCapacity, double fuelCapacity)
     {
         vehicleId = id;
-        maxFuelCapacity = fuelCapacity;
+        maxFuelCapacity = maxCapacity;
         currentFuel = fuelCapacity;
     }
 
@@ -34,6 +36,6 @@ public abstract class Vehicle
 
     public virtual void DisplayFleetStatus()
     {
-        Console.WriteLine($"[ID: {VehicleId}] Fuel: {currentFuel}L | Cargo Items: {loadedCargo.Count}");
+        Console.WriteLine($"[ID: {VehicleId}] Fuel: {currentFuel:F1}L/{maxFuelCapacity}L | Cargo Items: {loadedCargo.Count}");
     }
 }

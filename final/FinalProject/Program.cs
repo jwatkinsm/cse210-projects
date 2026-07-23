@@ -11,10 +11,10 @@ class Program
 
         if (centralFleet.GetAvailableVehicles().Count == 0)
         {
-            centralFleet.AddVehicle(new CargoTruck("TRK-77", 300.0, 3, false ));
-            centralFleet.AddVehicle(new RefrigeratedVan("COLD-02", 80.0, -4.0, 8.0)); // -4°F deep freeze
-            centralFleet.AddVehicle(new DeliveryDrone("DRN-alpha", 50.0));
-            centralFleet.AddVehicle(new CargoTruck("TRK-OffRoad", 400.0, 2, true));
+            centralFleet.AddVehicle(new CargoTruck("TRK-77", 300.0,300.0, 3, false ));
+            centralFleet.AddVehicle(new RefrigeratedVan("COLD-02", 80.0,80.0, -4.0, 8.0)); // -4°F deep freeze
+            centralFleet.AddVehicle(new DeliveryDrone("DRN-alpha", 50.0,50.0));
+            centralFleet.AddVehicle(new CargoTruck("TRK-OffRoad", 400.0,400.0, 2, true));
         }
 
         bool runProgram = true;
@@ -28,7 +28,7 @@ class Program
             Console.WriteLine("3. Add New Vehicle to Fleet");
             Console.WriteLine("4. Save System Registry");
             Console.WriteLine("5. Refuel All Vehicles");
-            Console.WriteLine("5. Exit System Engine");
+            Console.WriteLine("6. Exit System Engine");
             Console.Write("Select an operation option (1-6): ");
 
             string selection = Console.ReadLine();
@@ -97,7 +97,7 @@ class Program
                         Console.Write("Is it 4WD capable? (y/n): ");
                         bool has4Wd = Console.ReadLine()?.ToLower() == "y";
                         
-                        centralFleet.AddVehicle(new CargoTruck(vId, cap, axles, has4Wd));
+                        centralFleet.AddVehicle(new CargoTruck(vId, cap, cap, axles, has4Wd));
                         Console.WriteLine($"[SUCCESS] Heavy Truck {vId} added to inventory.");
                     }
                     else if (vType == "2")
@@ -107,12 +107,12 @@ class Program
                         Console.Write("Enter insulation thickness (cm): ");
                         double.TryParse(Console.ReadLine(), out double insulation);
                         
-                        centralFleet.AddVehicle(new RefrigeratedVan(vId, cap, temp, insulation));
+                        centralFleet.AddVehicle(new RefrigeratedVan(vId, cap, cap, temp, insulation));
                         Console.WriteLine($"[SUCCESS] Refrigerated Van {vId} added to inventory.");
                     }
                     else if (vType == "3")
                     {
-                        centralFleet.AddVehicle(new DeliveryDrone(vId, cap));
+                        centralFleet.AddVehicle(new DeliveryDrone(vId, cap,cap));
                         Console.WriteLine($"[SUCCESS] UAV Drone {vId} added to inventory.");
                     }
                     else

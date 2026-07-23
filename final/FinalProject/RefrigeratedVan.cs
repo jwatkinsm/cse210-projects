@@ -2,8 +2,11 @@ public class RefrigeratedVan : Vehicle
 {
     private double _targetTemperature;
     private double _insulationThickness;
-     public RefrigeratedVan(string id, double fuelCapacity, double targetTempF, double insulationCm) 
-        : base(id, fuelCapacity) 
+
+    public double TargetTemp => _targetTemperature;
+    public double Insulation => _insulationThickness;
+      public RefrigeratedVan(string id, double maxCapacity, double currentFuel, double targetTempF, double insulationCm) 
+            : base(id, maxCapacity, currentFuel) 
     { 
         _targetTemperature = targetTempF;
         _insulationThickness = insulationCm;
